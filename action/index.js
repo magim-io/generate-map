@@ -2886,16 +2886,22 @@ async function main() {
 
 async function installPackage() {
   return new Promise((resolve, reject) => {
-    exec("npm install dependency-cruiser", (error, stdout, stderr) => {
-      if (error) {
-        reject(error);
-      }
-      if (stderr) {
-        reject(stderr);
-      }
+    exec(
+      "npm install dependency-cruiser",
+      {
+        cwd: "./server",
+      },
+      (error, stdout, stderr) => {
+        if (error) {
+          reject(error);
+        }
+        if (stderr) {
+          reject(stderr);
+        }
 
-      resolve(stdout);
-    });
+        resolve(stdout);
+      }
+    );
   });
 }
 
@@ -2903,6 +2909,9 @@ async function executePackage() {
   return new Promise((resolve, reject) => {
     exec(
       `npx depcruise src --include-only "^src" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json`,
+      {
+        cwd: "./server",
+      },
       (error, stdout, stderr) => {
         if (error) {
           reject(error);
