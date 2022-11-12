@@ -2878,13 +2878,13 @@ async function main() {
 
     console.log(install);
 
-    // const execute = await executePackage();
+    const execute = await executePackage();
 
-    // if (execute instanceof Error) {
-    //   throw execute;
-    // }
+    if (execute instanceof Error) {
+      throw execute;
+    }
 
-    // core.info(execute);
+    console.log(execute);
   } catch (err) {
     core.setFailed(`Action failed with error: ${err}`);
   }
@@ -2926,23 +2926,26 @@ async function installPackage() {
   });
 }
 
-// async function executePackage() {
-//   return new Promise((resolve, reject) => {
-//     exec(
-//       `npm exec --prefix ./server depcruise src --include-only "^src" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json`,
-//       (error, stdout) => {
-//         if (error) {
-//           reject(error);
-//         }
-//         // if (stderr) {
-//         //   reject(stderr);
-//         // }
+async function executePackage() {
+  return new Promise((resolve, reject) => {
+    exec(
+      `npm exec --prefix ./server depcruise src --include-only "^src" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json`,
+      {
+        cwd: "server",
+      },
+      (error, stdout) => {
+        if (error) {
+          reject(error);
+        }
+        // if (stderr) {
+        //   reject(stderr);
+        // }
 
-//         resolve(stdout);
-//       }
-//     );
-//   });
-// }
+        resolve(stdout);
+      }
+    );
+  });
+}
 
 main();
 
