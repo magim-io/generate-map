@@ -2868,20 +2868,59 @@ async function main() {
     //   throw new Error("Package dependency-cruiser failed to execute");
     // }
 
-    const install = await installPackage();
+    // const install = await installPackage();
 
-    if (install instanceof Error) {
-      throw install;
-    }
+    // if (install instanceof Error) {
+    //   throw install;
+    // }
 
-    const execute = await executePackage();
+    // const execute = await executePackage();
 
-    if (execute instanceof Error) {
-      throw execute;
-    }
+    // if (execute instanceof Error) {
+    //   throw execute;
+    // }
+
+    await whereAmI1();
+    await whereAmI2();
   } catch (err) {
     core.setFailed(`Action failed with error: ${err}`);
   }
+}
+
+async function whereAmI1() {
+  return new Promise((resolve, reject) => {
+    exec("pwd", (error, stdout, stderr) => {
+      if (error) {
+        reject(error);
+      }
+      if (stderr) {
+        reject(stderr);
+      }
+
+      core.info(stdout);
+    });
+  });
+}
+
+async function whereAmI2() {
+  return new Promise((resolve, reject) => {
+    exec(
+      "pwd",
+      {
+        cwd: "./server",
+      },
+      (error, stdout, stderr) => {
+        if (error) {
+          reject(error);
+        }
+        if (stderr) {
+          reject(stderr);
+        }
+
+        core.info(stdout);
+      }
+    );
+  });
 }
 
 async function installPackage() {
@@ -2889,7 +2928,7 @@ async function installPackage() {
     exec(
       "npm install dependency-cruiser",
       {
-        cwd: "../../../../../hunterrank/hunterrank/server/",
+        cwd: "./server",
       },
       (error, stdout, stderr) => {
         if (error) {
@@ -2910,7 +2949,7 @@ async function executePackage() {
     exec(
       `npx depcruise src --include-only "^src" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json`,
       {
-        cwd: "../../../../../hunterrank/hunterrank/server/",
+        cwd: "./server",
       },
       (error, stdout, stderr) => {
         if (error) {
