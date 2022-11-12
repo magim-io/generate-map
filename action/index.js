@@ -4126,7 +4126,7 @@ options.cwd = "./server";
 
 async function main() {
   try {
-    await exec.exec("npm", ["install", "dependency-cruiser"], options);
+    await exec.exec("npm install dependency-cruiser", options);
 
     if (error !== "") {
       throw new Error("Package dependency-cruiser failed to install");
