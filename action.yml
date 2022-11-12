@@ -1,0 +1,5 @@
+name: Generate Map
+description: Generate map to upload to Magim server
+runs:
+  using: node16
+  main: action/index.js
