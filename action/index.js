@@ -4122,7 +4122,7 @@ options.listeners = {
     error += data.toString();
   },
 };
-options.cwd = "../../../../../hunterrank/hunterrank/server";
+options.cwd = "./server";
 
 async function main() {
   try {
