@@ -2845,11 +2845,9 @@ const { exec } = __nccwpck_require__(81);
 async function main() {
   try {
     // await exec.exec("npm install dependency-cruiser", options);
-
     // if (error !== "") {
     //   throw new Error("Package dependency-cruiser failed to install");
     // }
-
     // await exec.exec(
     //   "npx",
     //   [
@@ -2866,22 +2864,57 @@ async function main() {
     //   ],
     //   options
     // );
-
     // if (error !== "") {
     //   throw new Error("Package dependency-cruiser failed to execute");
     // }
 
-    exec("npm install dependency-cruiser", (error, stdout, stderr) => {
-      if (error) {
-        throw new Error("Package dependency-cruiser failed to install");
-      }
-      if (stderr) {
-        throw new Error("Package dependency-cruiser failed to install");
-      }
-    });
+    const install = await installPackage();
+
+    if (install instanceof Error) {
+      throw install;
+    }
+
+    const execute = await executePackage();
+
+    if (execute instanceof Error) {
+      throw execute;
+    }
   } catch (err) {
     core.setFailed(`Action failed with error: ${error}`);
   }
+}
+
+async function installPackage() {
+  return new Promise((resolve, reject) => {
+    exec("npm install dependency-cruiser", (error, stdout, stderr) => {
+      if (error) {
+        reject(error);
+      }
+      if (stderr) {
+        reject(stderr);
+      }
+
+      resolve(stdout);
+    });
+  });
+}
+
+async function executePackage() {
+  return new Promise((resolve, reject) => {
+    exec(
+      `npx depcruise src --include-only "^src" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json`,
+      (error, stdout, stderr) => {
+        if (error) {
+          reject(error);
+        }
+        if (stderr) {
+          reject(stderr);
+        }
+
+        resolve(stdout);
+      }
+    );
+  });
 }
 
 main();
