@@ -2868,7 +2868,7 @@ async function main() {
     //   throw new Error("Package dependency-cruiser failed to execute");
     // }
 
-    await whereAmI1();
+    // await whereAmI1();
 
     const install = await installPackage();
 
@@ -2890,28 +2890,25 @@ async function main() {
   }
 }
 
-async function whereAmI1() {
-  return new Promise((resolve, reject) => {
-    exec("pwd", (error, stdout, stderr) => {
-      if (error) {
-        reject(error);
-      }
-      if (stderr) {
-        reject(stderr);
-      }
+// async function whereAmI1() {
+//   return new Promise((resolve, reject) => {
+//     exec("pwd", (error, stdout, stderr) => {
+//       if (error) {
+//         reject(error);
+//       }
+//       if (stderr) {
+//         reject(stderr);
+//       }
 
-      core.info(`Where am I: ${stdout}`);
-    });
-  });
-}
+//       core.info(`Where am I: ${stdout}`);
+//     });
+//   });
+// }
 
 async function installPackage() {
   return new Promise((resolve, reject) => {
     exec(
-      "npm install dependency-cruiser",
-      {
-        cwd: "/home/runner/work/hunterrank/hunterrank/server/",
-      },
+      "npm install --prefix ./server dependency-cruiser",
       (error, stdout, stderr) => {
         if (error) {
           reject(error);
@@ -2929,10 +2926,7 @@ async function installPackage() {
 async function executePackage() {
   return new Promise((resolve, reject) => {
     exec(
-      `npx depcruise src --include-only "^src" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json`,
-      {
-        cwd: "/home/runner/work/hunterrank/hunterrank/server/",
-      },
+      `npm exec --prefix ./server depcruise src --include-only "^src" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json`,
       (error, stdout, stderr) => {
         if (error) {
           reject(error);
