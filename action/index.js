@@ -81,7 +81,7 @@ async function installPackage() {
       {
         cwd: "server",
       },
-      (error, stdout) => {
+      (error, stdout, stderr) => {
         if (error) {
           reject(error);
         }
@@ -102,7 +102,7 @@ async function executePackage() {
       {
         cwd: "server",
       },
-      (error, stdout) => {
+      (error, stdout, stderr) => {
         if (error) {
           reject(error);
         }
