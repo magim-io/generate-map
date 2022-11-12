@@ -7,9 +7,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tony Quach <quachhengtony@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "@actions/core": "^1.10.0",
-    "@actions/exec": "^1.1.1"
-  }
+  "license": "MIT"
 }
