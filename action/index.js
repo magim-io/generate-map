@@ -2876,11 +2876,15 @@ async function main() {
       throw install;
     }
 
+    core.info(install);
+
     const execute = await executePackage();
 
     if (execute instanceof Error) {
       throw execute;
     }
+
+    core.info(execute);
   } catch (err) {
     core.setFailed(`Action failed with error: ${err}`);
   }
