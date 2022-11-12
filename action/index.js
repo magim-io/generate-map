@@ -2876,15 +2876,15 @@ async function main() {
       throw install;
     }
 
-    core.info(install);
+    console.log(install);
 
-    const execute = await executePackage();
+    // const execute = await executePackage();
 
-    if (execute instanceof Error) {
-      throw execute;
-    }
+    // if (execute instanceof Error) {
+    //   throw execute;
+    // }
 
-    core.info(execute);
+    // core.info(execute);
   } catch (err) {
     core.setFailed(`Action failed with error: ${err}`);
   }
@@ -2908,14 +2908,17 @@ async function main() {
 async function installPackage() {
   return new Promise((resolve, reject) => {
     exec(
-      "npm install --prefix ./server dependency-cruiser",
-      (error, stdout, stderr) => {
+      "npm install dependency-cruiser",
+      {
+        cwd: "server",
+      },
+      (error, stdout) => {
         if (error) {
           reject(error);
         }
-        if (stderr) {
-          reject(stderr);
-        }
+        // if (stderr) {
+        //   reject(stderr);
+        // }
 
         resolve(stdout);
       }
@@ -2923,23 +2926,23 @@ async function installPackage() {
   });
 }
 
-async function executePackage() {
-  return new Promise((resolve, reject) => {
-    exec(
-      `npm exec --prefix ./server depcruise src --include-only "^src" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json`,
-      (error, stdout, stderr) => {
-        if (error) {
-          reject(error);
-        }
-        if (stderr) {
-          reject(stderr);
-        }
+// async function executePackage() {
+//   return new Promise((resolve, reject) => {
+//     exec(
+//       `npm exec --prefix ./server depcruise src --include-only "^src" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json`,
+//       (error, stdout) => {
+//         if (error) {
+//           reject(error);
+//         }
+//         // if (stderr) {
+//         //   reject(stderr);
+//         // }
 
-        resolve(stdout);
-      }
-    );
-  });
-}
+//         resolve(stdout);
+//       }
+//     );
+//   });
+// }
 
 main();
 
