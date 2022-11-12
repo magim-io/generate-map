@@ -2929,7 +2929,7 @@ async function installPackage() {
 async function executePackage() {
   return new Promise((resolve, reject) => {
     exec(
-      `npm exec --prefix ./server depcruise src --include-only "^src" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json`,
+      `npx depcruise src --include-only "^src" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json`,
       {
         cwd: "server",
       },
