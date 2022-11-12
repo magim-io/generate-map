@@ -2889,7 +2889,7 @@ async function installPackage() {
     exec(
       "npm install dependency-cruiser",
       {
-        cwd: "./server",
+        cwd: "../../../../../hunterrank/hunterrank/server/",
       },
       (error, stdout, stderr) => {
         if (error) {
@@ -2910,7 +2910,7 @@ async function executePackage() {
     exec(
       `npx depcruise src --include-only "^src" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json`,
       {
-        cwd: "./server",
+        cwd: "../../../../../hunterrank/hunterrank/server/",
       },
       (error, stdout, stderr) => {
         if (error) {
