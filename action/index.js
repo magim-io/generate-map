@@ -2880,7 +2880,7 @@ async function main() {
       throw execute;
     }
   } catch (err) {
-    core.setFailed(`Action failed with error: ${error}`);
+    core.setFailed(`Action failed with error: ${err}`);
   }
 }
 
