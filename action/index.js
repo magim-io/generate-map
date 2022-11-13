@@ -42,17 +42,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var exec = (__nccwpck_require__(81).exec);
 var core = __nccwpck_require__(665);
-var mapKind = core.getInput("map-kind", { required: true });
+// const mapKind: string = core.getInput("map-kind", { required: true });
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var install, _a, execute, _b, err_1;
+        var mapKind, install, _a, execute, _b, err_1;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
                     _c.trys.push([0, 13, , 14]);
-                    if (mapKind === "") {
-                        throw new Error("mapKind is undefined");
-                    }
+                    mapKind = "scamap";
                     install = void 0;
                     _a = mapKind;
                     switch (_a) {
