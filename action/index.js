@@ -42,7 +42,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var exec = (__nccwpck_require__(81).exec);
 var core = __nccwpck_require__(665);
-var mapKind = core.getInput("mapKind", { required: true });
+var mapKind = core.getInput("map-kind", { required: true });
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         var install, _a, execute, _b, err_1;
