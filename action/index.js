@@ -153,7 +153,7 @@ function executePackage(packageName) {
                         })];
                 case "typescript-eslint":
                     return [2 /*return*/, new Promise(function (resolve, reject) {
-                            exec("npx eslint --no-eslintrc -o magim-scamap.json src/", {
+                            exec("npx eslint --no-eslintrc -o magim-scamap.json src", {
                                 cwd: "server"
                             }, function (error, stdout) {
                                 if (error) {
