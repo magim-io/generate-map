@@ -49,7 +49,7 @@ function main() {
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
-                    _c.trys.push([0, 16, , 17]);
+                    _c.trys.push([0, 17, , 18]);
                     install = void 0;
                     _a = mapKind;
                     switch (_a) {
@@ -57,18 +57,21 @@ function main() {
                         case "scamap": return [3 /*break*/, 3];
                         case "flowmap": return [3 /*break*/, 5];
                     }
-                    return [3 /*break*/, 6];
+                    return [3 /*break*/, 7];
                 case 1: return [4 /*yield*/, installPackage("dependency-cruiser")];
                 case 2:
                     install = _c.sent();
-                    return [3 /*break*/, 7];
+                    return [3 /*break*/, 8];
                 case 3: return [4 /*yield*/, installPackage("typescript-eslint")];
                 case 4:
                     install = _c.sent();
-                    return [3 /*break*/, 7];
-                case 5: return [3 /*break*/, 7];
-                case 6: throw new Error("unhandled map kind");
-                case 7:
+                    return [3 /*break*/, 8];
+                case 5: return [4 /*yield*/, installPackage("magim-mapper")];
+                case 6:
+                    install = _c.sent();
+                    return [3 /*break*/, 8];
+                case 7: throw new Error("unhandled map kind");
+                case 8:
                     if (install instanceof Error) {
                         throw install;
                     }
@@ -76,35 +79,35 @@ function main() {
                     execute = void 0;
                     _b = mapKind;
                     switch (_b) {
-                        case "dependencymap": return [3 /*break*/, 8];
-                        case "scamap": return [3 /*break*/, 10];
-                        case "flowmap": return [3 /*break*/, 12];
+                        case "dependencymap": return [3 /*break*/, 9];
+                        case "scamap": return [3 /*break*/, 11];
+                        case "flowmap": return [3 /*break*/, 13];
                     }
-                    return [3 /*break*/, 14];
-                case 8: return [4 /*yield*/, executePackage("dependency-cruiser")];
-                case 9:
-                    execute = _c.sent();
                     return [3 /*break*/, 15];
-                case 10: return [4 /*yield*/, executePackage("typescript-eslint")];
-                case 11:
+                case 9: return [4 /*yield*/, executePackage("dependency-cruiser")];
+                case 10:
                     execute = _c.sent();
-                    return [3 /*break*/, 15];
-                case 12: return [4 /*yield*/, executePackage("magim-mapper")];
-                case 13:
+                    return [3 /*break*/, 16];
+                case 11: return [4 /*yield*/, executePackage("typescript-eslint")];
+                case 12:
                     execute = _c.sent();
-                    return [3 /*break*/, 15];
-                case 14: throw new Error("unhandled map kind");
-                case 15:
+                    return [3 /*break*/, 16];
+                case 13: return [4 /*yield*/, executePackage("magim-mapper")];
+                case 14:
+                    execute = _c.sent();
+                    return [3 /*break*/, 16];
+                case 15: throw new Error("unhandled map kind");
+                case 16:
                     if (execute instanceof Error) {
                         throw execute;
                     }
                     console.log(execute);
-                    return [3 /*break*/, 17];
-                case 16:
+                    return [3 /*break*/, 18];
+                case 17:
                     err_1 = _c.sent();
                     console.error("action failed with ".concat(err_1));
-                    return [3 /*break*/, 17];
-                case 17: return [2 /*return*/];
+                    return [3 /*break*/, 18];
+                case 18: return [2 /*return*/];
             }
         });
     });
@@ -127,6 +130,17 @@ function installPackage(packageName) {
                 case "typescript-eslint":
                     return [2 /*return*/, new Promise(function (resolve, reject) {
                             exec("npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript", {
+                                cwd: "server"
+                            }, function (error, stdout) {
+                                if (error) {
+                                    reject(error);
+                                }
+                                resolve(stdout);
+                            });
+                        })];
+                case "magim-mapper":
+                    return [2 /*return*/, new Promise(function (resolve, reject) {
+                            exec("npm install --save-dev @macdeluck/typescript-estree-cli", {
                                 cwd: "server"
                             }, function (error, stdout) {
                                 if (error) {
@@ -170,7 +184,7 @@ function executePackage(packageName) {
                         })];
                 case "magim-mapper":
                     return [2 /*return*/, new Promise(function (resolve, reject) {
-                            exec("node magim-mapper src/**/*.ts --outFile=magim-flowmap.json", {
+                            exec("typescript-estree-cli src/**/*.ts --outFile=magim-flowmap.json", {
                                 cwd: "server"
                             }, function (error, stdout) {
                                 if (error) {
