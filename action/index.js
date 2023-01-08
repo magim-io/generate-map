@@ -184,7 +184,7 @@ function executePackage(packageName) {
                         })];
                 case "magim-mapper":
                     return [2 /*return*/, new Promise(function (resolve, reject) {
-                            exec("typescript-estree-cli src/**/*.ts --outFile=magim-flowmap.json", {
+                            exec("npx typescript-estree-cli src/**/*.ts --outFile=magim-flowmap.json", {
                                 cwd: "server"
                             }, function (error, stdout) {
                                 if (error) {
