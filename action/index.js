@@ -102,7 +102,7 @@ function main() {
                     return [3 /*break*/, 17];
                 case 16:
                     err_1 = _c.sent();
-                    console.error("Action failed with ".concat(err_1));
+                    console.error("action failed with ".concat(err_1));
                     return [3 /*break*/, 17];
                 case 17: return [2 /*return*/];
             }
