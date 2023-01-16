@@ -118,9 +118,11 @@ function installPackage(packageName) {
             switch (packageName) {
                 case "dependency-cruiser":
                     return [2 /*return*/, new Promise(function (resolve, reject) {
-                            exec("npm install dependency-cruiser --force", {
-                                cwd: "server"
-                            }, function (error, stdout) {
+                            exec("npm install dependency-cruiser --force", 
+                            // {
+                            //   cwd: "server",
+                            // },
+                            function (error, stdout) {
                                 if (error) {
                                     reject(error);
                                 }
@@ -162,9 +164,11 @@ function executePackage(packageName) {
             switch (packageName) {
                 case "dependency-cruiser":
                     return [2 /*return*/, new Promise(function (resolve, reject) {
-                            exec("npx depcruise src --include-only \"^src\" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json", {
-                                cwd: "server"
-                            }, function (error, stdout) {
+                            exec("npx depcruise src --include-only \"^src\" --config .magim-dependencymap.config.js --output-type json > magim-dependencymap.json", 
+                            // {
+                            //   cwd: "server",
+                            // },
+                            function (error, stdout) {
                                 if (error) {
                                     reject(error);
                                 }
@@ -173,9 +177,11 @@ function executePackage(packageName) {
                         })];
                 case "typescript-eslint":
                     return [2 /*return*/, new Promise(function (resolve, reject) {
-                            exec("npx eslint --no-eslintrc -o magim-scamap.json --ext .ts src", {
-                                cwd: "server"
-                            }, function (error, stdout) {
+                            exec("npx eslint --no-eslintrc -o magim-scamap.json --ext .ts src", 
+                            // {
+                            //   cwd: "server",
+                            // },
+                            function (error, stdout) {
                                 if (error) {
                                     reject(error);
                                 }
