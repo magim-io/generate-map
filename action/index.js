@@ -118,7 +118,7 @@ function installPackage(packageName) {
             switch (packageName) {
                 case "dependency-cruiser":
                     return [2 /*return*/, new Promise(function (resolve, reject) {
-                            exec("npm install dependency-cruiser", {
+                            exec("npm install dependency-cruiser --force", {
                                 cwd: "server"
                             }, function (error, stdout) {
                                 if (error) {
